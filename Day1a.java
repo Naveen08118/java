@@ -1,0 +1,12 @@
+//1.write a program to display Hello World
+import java.util.*;
+
+class Day1a{
+
+static public void main(String[] args)
+
+{
+
+System.out.println("HELLO WORLD");
+}
+}
