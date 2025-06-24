@@ -1,0 +1,32 @@
+// CurrentAccount.java
+class CurrentAccount extends Account {
+    private double overdraftLimit; // Private to this class
+
+    public CurrentAccount(String accountNumber, double initialBalance, double overdraftLimit) {
+        super(accountNumber, initialBalance); // Call the Account constructor
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    // Getter for overdraftLimit
+    public double getOverdraftLimit() {
+        return overdraftLimit;
+    }
+
+    // Setter for overdraftLimit (example)
+    public void setOverdraftLimit(double overdraftLimit) {
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    // Override withdraw to handle overdrafts (example)
+    @Override
+    public void withdraw(double amount) {
+        if (balance - amount >= -overdraftLimit) {
+            balance -= amount;
+        } else {
+            System.out.println("Overdraft limit exceeded.");
+        }
+    }
+}
+
+
+
