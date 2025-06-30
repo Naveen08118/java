@@ -1,0 +1,111 @@
+need to do code in bug_tracking_system
+
+---------------------------------------------
+
+users role
+--------------------------------------------------------
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    role ENUM('EMPLOYEE', 'MANAGER', 'ADMIN') NOT NULL
+);
+
+ 
+
+INSERT INTO users (id, username, password,role)
+VALUES ('001', 'ravi', '123', 'ADMIN'); 
+
+
+INSERT INTO users (id, username, password,role)
+VALUES ('002', 'phani', '234', 'MANAGER'); 
+
+
+INSERT INTO users (id, username, password,role)
+VALUES ('003', 'kumar', '345', 'EMPLOYEE'); 
+
+
+-------------------------------------------------------------
+
+Employee
+
+ INSERT INTO Employee (empCode, empName, empEmail, empPassword, gender, DOB,mobileNo, Role)
+VALUES ('118', 'ravi', 'ravi@gmail.com', '123','male', '1990', '9848022338','ADMIN');
+
+
+
+
+
+
+
+------------------
+CREATE TABLE Employee (
+    empCode int,
+    empName varchar(30),
+    empEmail varchar(40),
+    empPassword varchar(20),
+	gender varchar(10),
+	DOB varchar(20),
+	mobileNo bigint,
+	Role varchar(20),
+    PRIMARY KEY (empCode)
+); 
+
+
+
+
+
+
+
+
+
+CREATE TABLE AssignProject(
+    projectID int,
+    empCode int,
+	FOREIGN KEY (empCode) REFERENCES Employee(empCode),
+	FOREIGN KEY (projectID) REFERENCES Project(projectID)
+);
+
+
+
+
+CREATE TABLE Project (
+    projectID int,
+    projectName varchar(30),
+    SDate varchar(30),
+    EDate varchar(30),
+	projectDec varchar(200),
+	PRIMARY KEY (projectID)
+); 
+
+
+
+
+
+CREATE TABLE BugReport (
+    bugNo int,
+	bugCode int ,
+	projectID int,
+	TCode int,
+	ECode int,
+	status varchar(20),
+	bugDes varchar(100),
+FOREIGN KEY (bugCode) REFERENCES BugType(bugCode),
+FOREIGN KEY (TCode) REFERENCES Employee(empCode),
+FOREIGN KEY (ECode) REFERENCES Employee(empCode),
+FOREIGN KEY (projectID) REFERENCES Project(projectID),
+PRIMARY KEY (bugNo)
+); 
+
+
+
+
+
+
+
+CREATE TABLE BugType (
+    bugCode int,
+    bugCatgory varchar(30),
+    bugSeverty	varchar(20),
+    PRIMARY KEY (bugCode)
+); 
